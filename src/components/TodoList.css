@@ -1,0 +1,18 @@
+.todosList {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.todo {
+    background-color: wheat;
+    padding: 1em;
+    margin:1em;
+}
+.todo .isCompleted {
+    color: grey;
+}
+.todo .id {
+    color: grey;
+    font-size: 0.5em;
+}

@@ -1,0 +1,24 @@
+.controls {
+    background: #444;
+    color: white;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.controls input {
+    all:unset;
+    padding: 1em;
+    background-color: #333;
+}
+.controls button {
+    all:unset;
+    padding: 1em;
+    color: white;
+    background: #222;
+    cursor: pointer;
+}
+.controls button:hover {
+
+    background: #000;
+}

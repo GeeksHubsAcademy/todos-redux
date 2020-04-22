@@ -16,9 +16,15 @@ function reducer(state = initialState, action) {
                      {
                          text:action.payload,
                          completed: action.completed || false,
+                         id: action.id
                      }
                  ]
             };
+        case 'CHANGE_VISIBILITY':
+            return {
+                ...state,
+                visibility: action.payload
+            }
 
         default:
              return state;
