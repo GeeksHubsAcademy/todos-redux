@@ -16,19 +16,19 @@ function Controls(props) {
         placeholder='add todo here'
         onKeyUp={(e) => addTodo(e)}
       />
-      <div>
+      <div className="filterSelector">
         <button onClick={() => props.changeVisibility('ALL')}>
-          Show All
+         All
         </button>
         <button
           onClick={() => props.changeVisibility('COMPLETED')}
         >
-          Show Completed
+         Completed
         </button>
         <button
           onClick={() => props.changeVisibility('NO_COMPLETED')}
         >
-          Show No Completed
+         No Completed
         </button>
       </div>
     </div>
