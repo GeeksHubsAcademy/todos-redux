@@ -1,8 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import './TodoList.css';
+import { deleteTodoAction, toggleCompleteAction } from '../services/redux/actions';
 
-function filterTodos(todos, filter) {
+function filterTodos(todos = [], filter) {
+  console.log(filter);
+
 
     if (filter === 'ALL') {
         return todos
@@ -15,6 +18,9 @@ function filterTodos(todos, filter) {
     if (filter === 'NO_COMPLETED') {
       return todos.filter((todo) => !todo.completed);
     }
+    console.error('invalid filter', filter);
+
+    return todos
 
 }
 
@@ -57,16 +63,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCompleted: (id) =>
-    dispatch({
-      type: 'TOGGLE_COMPLETED_TODO',
-      payload: id,
-    }),
-  delete: (id) =>
-    dispatch({
-      type: 'DELETE_TODO',
-      payload: id,
-    }),
+  toggleCompleted: toggleCompleteAction(dispatch),
+  delete: deleteTodoAction(dispatch),
 });
 
 const connected = connect(

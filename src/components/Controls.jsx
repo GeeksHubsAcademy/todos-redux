@@ -3,32 +3,34 @@ import { connect } from 'react-redux';
 import './Controls.css';
 
 function Controls(props) {
-    const addTodo = e => {
-        if (e.keyCode === 13 && e.target.value.trim()) {
-          props.addTodo(e.target.value.trim());
-          e.target.value = '';
-        }
+  const onKeyUpHandle = (e) => {
+    console.log('key up', e.keyCode);
+
+    if (e.keyCode === 13 && e.target.value.trim()) {
+      props.addTodo(e.target.value.trim());
+      e.target.value = '';
     }
+  };
   return (
     <div className='controls'>
       <input
         type='text'
         placeholder='add todo here'
-        onKeyUp={(e) => addTodo(e)}
+        onKeyUp={(e) => onKeyUpHandle(e)}
       />
-      <div className="filterSelector">
+      <div className='filterSelector'>
         <button onClick={() => props.changeVisibility('ALL')}>
-         All
+          All
         </button>
         <button
           onClick={() => props.changeVisibility('COMPLETED')}
         >
-         Completed
+          Completed
         </button>
         <button
           onClick={() => props.changeVisibility('NO_COMPLETED')}
         >
-         No Completed
+          No Completed
         </button>
       </div>
     </div>
@@ -36,23 +38,23 @@ function Controls(props) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addTodo: (text) =>
+  addTodo: (text) => {
+    console.log('dispatch ADD_TODO');
+
     dispatch({
       type: 'ADD_TODO',
       payload: text,
       completed: false,
       id: Date.now(),
-    }),
+    });
+  },
   changeVisibility: (setting) =>
-        dispatch({
-            type: 'CHANGE_VISIBILITY',
-            payload: setting
-        })
+    dispatch({
+      type: 'CHANGE_VISIBILITY',
+      payload: setting,
+    }),
 });
 
-const connected = connect(
-  null,
-  mapDispatchToProps,
-)(Controls);
+const connected = connect(null, mapDispatchToProps)(Controls);
 
 export default connected;
