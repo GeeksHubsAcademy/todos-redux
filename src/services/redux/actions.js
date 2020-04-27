@@ -1,4 +1,4 @@
-export const deleteTodoAction = (dispatch) => (id) =>
+export const deleteTodoAction = (dispatch, id) =>
   dispatch({
     type: 'DELETE_TODO',
     payload: id,

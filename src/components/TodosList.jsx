@@ -27,10 +27,10 @@ function filterTodos(todos = [], filter) {
 function TodoList(props) {
     return (
       <div className='todoList'>
-        {filterTodos(props.todos, props.filter).map((todo) => (
+        {filterTodos(props.todos,props.filter).map((todo) => (
           <div
             className={`todo ${
-              todo.completed ? 'completed' : ''
+              todo.completed ? 'completed' : 'uncompleted'
             }`}
             key={todo.id}
           >
@@ -43,9 +43,7 @@ function TodoList(props) {
               >
                 {!todo.completed ? ' complete' : '✔️ uncomplete'}
               </button>
-              <button
-                onClick={() => props.delete(todo.id)}
-              >
+              <button onClick={() => props.delete(todo.id)}>
                 {'❌ delete'}
               </button>
             </div>
@@ -64,7 +62,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   toggleCompleted: toggleCompleteAction(dispatch),
-  delete: deleteTodoAction(dispatch),
+  delete: (id) => deleteTodoAction(dispatch, id),
 });
 
 const connected = connect(
